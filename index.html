@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#1e1e2e"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<title>FlowForge Studio — конструктор блок-схем</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script defer src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script defer src="js/app.js"></script></head><body>
+<header id="top"><b class="logo">⚡ FlowForge</b>
+<button data-a="undo" title="Отменить (Ctrl+Z)">↶</button><button data-a="redo" title="Повторить (Ctrl+Y)">↷</button>
+<button data-t="select" class="on" title="Выбор (V)">↖</button><button data-t="pan" title="Рука (H / пробел)">✋</button><button data-t="link" title="Связать: тап по двум блокам (C)">🔗</button>
+<span class="sep"></span>
+<button data-a="bg" title="Сменить фон">🎨</button><button data-a="tb" title="Авто-раскладка">🧭</button><button data-a="menu" title="Меню">☰</button></header>
+<nav id="pal"></nav>
+<main id="stage"><svg id="cv"></svg>
+<div id="hud"><button data-a="zout">−</button><span id="info"></span><button data-a="zin">+</button><button data-a="fit" title="Показать всё (F)">⛶</button></div>
+<aside id="insp" hidden>
+<textarea id="pt" class="n" rows="2" placeholder="Текст блока"></textarea>
+<div class="row"><select id="pty" class="ns"></select><input type="color" id="pc" class="ns"><button data-a="resetc" class="ns" title="Сбросить цвет">↺</button></div>
+<input id="pl" class="e" placeholder="Подпись связи (Да / Нет)">
+<div class="row"><button data-a="dup" class="ns">⧉ Копия</button><button data-a="rev" class="e">⇄ Развернуть</button><button data-a="del" class="d">🗑 Удалить</button></div></aside></main>
+<dialog id="menu"><form method="dialog"><h3>FlowForge Studio</h3><div class="grid">
+<button data-a="new">📄 Новая схема</button><button data-a="demo">🧩 Пример</button>
+<button data-a="open">📂 Открыть JSON</button><button data-a="json">💾 Сохранить JSON</button>
+<button data-a="paste">📋 Вставить JSON</button><button data-a="tpl">🤖 Шаблон для ИИ</button>
+<button data-a="prompt">✨ Промпт для ИИ</button><button data-a="share">📤 Поделиться</button>
+<button data-a="png">🖼 PNG</button><button data-a="svg">✏️ SVG</button><button data-a="pdf">📕 PDF</button>
+<button data-a="tb">↕ Раскладка вниз</button><button data-a="lr">↔ Раскладка вправо</button>
+<button data-a="install" id="inst" hidden>📲 Установить</button></div>
+<textarea id="pasteBox" hidden rows="6" placeholder="Вставьте JSON (можно с ```json)"></textarea><button id="pasteGo" hidden>Построить схему</button>
+<label>Фон <select id="bg"></select></label>
+<label>Масштаб PNG <select id="sc"><option value="1">1×<option value="2">2×<option value="3">3×</select></label>
+<label><input type="checkbox" id="snap"> Привязка к сетке</label>
+<label><input type="checkbox" id="sig"> Подпись в экспорте</label>
+<p class="hint">iPhone/iPad: «Поделиться» → «На экран Домой». Жесты: щипок — зум, перетаскивание пустого места — сдвиг, двойной тап по блоку — правка текста, тянуть кружок у блока — связь (в пустое место — новый блок).</p>
+<button value="close">Закрыть</button></form></dialog>
+<div id="toast"></div><input type="file" id="fi" accept=".json,application/json" hidden></body></html>
